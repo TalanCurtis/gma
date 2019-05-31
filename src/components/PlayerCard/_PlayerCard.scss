@@ -1,0 +1,15 @@
+.PlayerCard{
+  width: 320px;
+  height: 454px;
+  background-color: grey;
+  display: grid;
+  .header {
+    background-color: blue;
+  }
+  .body {
+    background-color: red;
+  }
+  .footer {
+    background-color: green;
+  }
+}
