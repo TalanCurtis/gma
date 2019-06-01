@@ -5,12 +5,53 @@
       "playerName": "Johnny",
       "character": {
         "attributes": {
-          "strength": 1,
-          "dexterity": 1,
-          "constitution": 1,
-          "intelligence": 1,
-          "wisdom": 1,
-          "charisma": 1
+          "tableName": "Attributes",
+          "columns":[
+            {
+              "header": "Attribute",
+              "accessor": "attribute"
+            },
+            {
+              "header": "Value",
+              "accessor": "value"
+            },
+            {
+              "header": "Saving Through",
+              "accessor": "savingThrough"
+            }
+          ],
+          "data":[
+            {
+              "attribute": "Strength",
+              "value": 14,
+              "savingThrough": 10
+            },
+            {
+              "attribute": "Dexterity",
+              "value": 14,
+              "savingThrough": 10
+            },
+            {
+              "attribute": "Constitution",
+              "value": 14,
+              "savingThrough": 10
+            },
+            {
+              "attribute": "Intelligence",
+              "value": 14,
+              "savingThrough": 10
+            },
+            {
+              "attribute": "Wisdom",
+              "value": 14,
+              "savingThrough": 10
+            },
+            {
+              "attribute": "Charisma",
+              "value": 14,
+              "savingThrough": 10
+            }
+          ]
         },
         "info": {
           "characterName": "Dances with Wolves",
@@ -27,7 +68,8 @@
           ]
         },
         "outfit": {
-          "armorClass": 0,
+          "tableName": "Outfit",
+          "armorClass": 4,
           "items": [
             {
               "id": 0,
