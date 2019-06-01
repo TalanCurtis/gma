@@ -9,69 +9,104 @@ class Table extends Component{
     this.state={
     }
   }
+  static defaultProps = {
+    // data is all the data required to make a table
+    data: {
+      "header": {
+        "title": "title",
+        "subTitle": "sub",
+        "value": 0
+      },
+      "columns":{
+        "note": "*",
+        "item": "Item",
+        "modifier": "Mod" 
+      },
+      "items": [
+        {
+          "id": 0,
+          "name": "test name",
+          "isMagical": true,
+          "modifier": 99,
+          "notes": [
+            "this is a test item",
+          ],
+          "bonuses": [
+            "good area to put objects the effect attributes like str + 2 while wearing armor"
+          ],
+          "isEquipped": true
+        },
+      ]
+    }
+  }
+
+  header = () => {
+    const { title , subTitle, value } = this.props.data.header;
+    return ( 
+      <div className="header" style={{display:"grid", gridTemplateColumns:`repeat(${2}, 1fr)`, backgroundColor:"yellow", padding:"4px"}}>
+        <div className="title h5" style={{justifySelf: "flex-start", alignSelf:"center"}}>
+          {title}
+          </div>
+          <div className="subTitle h6" style={{display:"flex", justifyContent:"center", alignItems:"center", justifySelf: "flex-end"}}>
+          <div>
+            {subTitle}:
+          </div>
+          <div>
+            {value}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  columnHeader = () => {
+    const { item , modifier, note } = this.props.data.columns;
+    return (
+        <div className="columnHeaders" style={{display:"grid", gridTemplateColumns:`1fr 10fr 2fr`, backgroundColor:"orange", padding:"4px"}}>
+          <div style={{justifySelf:"center", alignSelf:"center"}} > { note } </div>
+          <div style={{justifySelf:"center", alignSelf:"center"}} > { item } </div>
+          <div> { modifier } </div>
+        </div>
+    );
+  }
+
+  items = () => {
+    let items = _.map(this.props.data.items, (x,i)=>{
+      let note = " ";
+      if ( x.notes.length ){
+        note = "+";
+      }
+      if ( x.isMagical ){
+        note = "*"
+      }
+
+      return (
+        <div  key={i} style={{display:"grid", gridTemplateColumns:`1fr 10fr 2fr`, padding:"4px"}}>
+          <div style={{justifySelf:"center", alignSelf:"center"}}> { note } </div>
+          <div> { x.name }</div>
+          <div style={{justifySelf:"flex-end"}}> { x.modifier } </div>
+        </div>
+      );
+    });
+    return (
+      <div className="items" style={{display:"grid"}}>
+        { items }
+      </div>
+    );
+  }
 
   render(){
-    const { data, columns } = this.props.data;
-    // have to rename key in data with a capital H or react-table doesn't read it.
     console.log(this.props)
-    let renderColumns =  _.map(columns, (x ,i)=>{
-      return(
-      <div key={i} className="columns">
-        {x.id}
-      </div>
-      )
-    });
-    let renderData =  _.map(data, (x ,i)=>{
-      return(
-      <div key={i} className="row">
-        {x.items.name}
-      </div>
-      )
-    });
-
     return(
       <div className="Table" style={{display:"grid"}}>
-        <div className="Header" style={{display:"grid", gridTemplateColumns:`repeat(${2}, 1fr)`, backgroundColor:"yellow"}}>
-          <div className="title h5" style={{justifySelf: "flex-start", alignSelf:"center", marginLeft:"10px"}}>
-          {"Outfit"}
-          </div>
-          <div className="subTitle h6" style={{display:"flex", justifyContent:"center", alignItems:"center", justifySelf: "flex-end", marginRight:"10px"}}>
-            <div>
-            {"AC"}:
-            </div>
-            <div>
-            {"13"}
-            </div>
-          </div>
-        </div>
-        <div className="columnHeaders" style={{display:"grid", gridTemplateColumns:`1fr 10fr 2fr`, backgroundColor:"orange"}}>
-          <div> * </div>
-          <div> Item </div>
-          <div> Mod</div>
-        </div>
-        <div className="items" style={{display:"grid"}}>
-          <div style={{display:"grid", gridTemplateColumns:`1fr 10fr 2fr`}}>
-            <div> * </div>
-            <div> Black Chain mail</div>
-            <div> +8 </div>
-          </div>
-          <div style={{display:"grid", gridTemplateColumns:`1fr 10fr 2fr`}}>
-            <div> {" "}  </div>
-            <div> Black Horned helmet</div>
-            <div> +3 </div>
-          </div>
-          <div style={{display:"grid", gridTemplateColumns:`1fr 10fr 2fr`}}>
-            <div> {" "} </div>
-            <div> Black Large Shield</div>
-            <div> +4 </div>
-          </div>
-
-        </div>
-        
+        {this.header()}
+        {this.columnHeader()}
+        {this.items()}
       </div>
     )
   }
 }
+
 
 export default Table;
 

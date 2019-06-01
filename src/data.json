@@ -68,14 +68,22 @@
           ]
         },
         "outfit": {
-          "tableName": "Outfit",
-          "armorClass": 4,
+          "header": {
+            "title": "Outfit",
+            "subTitle": "AC",
+            "value": 0
+          },
+          "columns":{
+            "note": "*",
+            "item": "Item",
+            "modifier": "Mod" 
+          },
           "items": [
             {
               "id": 0,
               "name": "Black Chain mail",
               "isMagical": true,
-              "armor": 8,
+              "modifier": 18,
               "notes": [
                 "this Item is Magical",
                 "it does not reflect light"
@@ -89,7 +97,7 @@
               "id": 1,
               "name": "Black Horned Helmet",
               "isMagical": false,
-              "armor": 3,
+              "modifier": -3,
               "notes": [],
               "bonuses": [],
               "isEquipped": true
@@ -98,8 +106,8 @@
               "id": 2,
               "name": "Large Black Shield",
               "isMagical": false,
-              "armor": 4,
-              "notes": [],
+              "modifier": 4,
+              "notes": ["this is one big shield"],
               "bonuses": [],
               "isEquipped": false
             }
