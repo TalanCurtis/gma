@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 // import colors from "../../styles/main.css"
-import ReactTable from 'react-table';
 import _ from "lodash";
 
 
