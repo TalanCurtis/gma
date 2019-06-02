@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import data from '../../data.json';
 import _ from 'lodash';
 import PlayerCard from '../../components/PlayerCard/PlayerCard';
 
@@ -10,23 +9,16 @@ class Players extends Component{
     this.state={
     }
   }
-
-  test(){
-    console.log(data)
-  }
-
   render(){
-    let players = _.map(data.players, (x,i)=>{
+    let players = _.map(this.props.players, (x,i)=>{
       return (
-        <div key={i}>
-          {/* {x.playerName} */}
+        <div key={i} style={{margin:"5px"}}>
           <PlayerCard content={x}/>
         </div>
       )
     })
     return(
       <div className="Players">
-        {/* <button onClick={()=>this.test()}>data</button> */}
         {players}
       </div>
     )
@@ -34,7 +26,9 @@ class Players extends Component{
 }
 
 function mapStateToProps(state){
-  return state ;
+  return {
+    players: state.players
+  } ;
 } 
 
 export default connect(mapStateToProps)(Players);
