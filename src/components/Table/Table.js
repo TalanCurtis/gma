@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import colors from "../../styles/main.css"
+import DiceToRole from '../DiceToRole/DiceToRole';
 import _ from "lodash";
 
 
@@ -87,11 +88,11 @@ class Table extends Component{
       }
 
       return (
-        <div  key={i} style={{display:"grid", gridTemplateColumns:`1fr 10fr 2fr`, padding:"4px", backgroundColor:"pink"}}>
+        <div  key={i} style={{display:"grid", gridTemplateColumns:`1fr 10fr 3fr`, padding:"4px", backgroundColor:"pink"}}>
           {note? <div style={{justifySelf:"center", alignSelf:"center"}}> { note } </div> : null }
           {x.name? <div style={{justifySelf:"flex-start", alignSelf:"center"}}> { x.name } </div> : null }
           {x.modifier? <div style={{justifySelf:"flex-end", alignSelf:"center"}}> { x.modifier } </div> : null }
-          {x.dice? <div style={{justifySelf:"center", alignSelf:"center"}}> { x.dice.type } </div> : null }
+          {x.dice? <div style={{justifySelf:"center", alignSelf:"center"}}><DiceToRole dice={x.dice}/></div> : null }
         </div>
       );
     });
