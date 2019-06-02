@@ -66,13 +66,14 @@ class Table extends Component{
   }
 
   columnHeader = () => {
-    const { item , modifier, note , dice} = this.props.data.columns;
+    const { item , modifier, note , dice, equipped} = this.props.data.columns;
     return (
-        <div className="columnHeaders" style={{display:"grid", gridTemplateColumns:`1fr 10fr 2fr`, backgroundColor:"orange", padding:"4px"}}>
+        <div className="columnHeaders" style={{display:"grid", gridTemplateColumns:`1fr 10fr 2fr 1fr`, backgroundColor:"orange", padding:"4px"}}>
           {note? <div style={{justifySelf:"center", alignSelf:"center"}}> { note } </div> : null }
           {item? <div style={{justifySelf:"center", alignSelf:"center"}}> { item } </div> : null }
           {modifier? <div style={{justifySelf:"center", alignSelf:"center"}}> { modifier } </div> : null }
           {dice? <div style={{justifySelf:"center", alignSelf:"center"}}> { dice } </div> : null }
+          {equipped? <div style={{justifySelf:"center", alignSelf:"center"}}> { equipped } </div> : null }
         </div>
     );
   }
@@ -86,13 +87,15 @@ class Table extends Component{
       if ( x.isMagical ){
         note = "*"
       }
+      const { equipped } = this.props.data.columns;
 
       return (
-        <div  key={i} style={{display:"grid", gridTemplateColumns:`1fr 10fr 3fr`, padding:"4px", backgroundColor:"pink"}}>
+        <div  key={i} style={{display:"grid", gridTemplateColumns:`1fr 10fr 3fr 1fr`, padding:"4px", backgroundColor:"pink"}}>
           {note? <div style={{justifySelf:"center", alignSelf:"center"}}> { note } </div> : null }
           {x.name? <div style={{justifySelf:"flex-start", alignSelf:"center"}}> { x.name } </div> : null }
           {x.modifier? <div style={{justifySelf:"flex-end", alignSelf:"center"}}> { x.modifier } </div> : null }
           {x.dice? <div style={{justifySelf:"center", alignSelf:"center"}}><DiceToRole dice={x.dice}/></div> : null }
+          {equipped? <div style={{justifySelf:"center", alignSelf:"center"}}><input type="checkbox" name="equipt" id={"x.name+id"}/></div> : null }
         </div>
       );
     });
