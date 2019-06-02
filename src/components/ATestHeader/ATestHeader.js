@@ -11,7 +11,7 @@ class ATestHeader extends Component{
   }
 
   test(){
-    console.log(this.state, this.props)
+    console.log( this.props)
     this.props.updateATest("Here is my Text")
   }
 
@@ -31,7 +31,7 @@ const outputActions = {
 }
 
 function mapStateToProps(state){
-  return {aTest: state.aTest};
+  return state;
 }
 
 
