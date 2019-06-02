@@ -16,9 +16,14 @@ class PlayerCard extends Component{
         <div className="header">
           <div className="playerName">{playerName}</div>
         </div>
-        <div className="body">
+        <div className="body" >
           {/* TODO: make comps for each attribute section then put them in a grid. */}
-          <Table data={outfit} />
+          <div>
+            <Table data={outfit} />
+          </div>
+          <div>
+            <Table data={weapons} />
+          </div>
         </div>
         <div className="footer">
           <button>Notes</button>

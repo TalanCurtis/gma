@@ -26,7 +26,7 @@ class Players extends Component{
     })
     return(
       <div className="Players">
-        <button onClick={()=>this.test()}>data</button>
+        {/* <button onClick={()=>this.test()}>data</button> */}
         {players}
       </div>
     )

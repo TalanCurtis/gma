@@ -42,12 +42,9 @@ class Table extends Component{
 
   header = () => {
     const { title , subTitle, value } = this.props.data.header;
-    return ( 
-      <div className="header" style={{display:"grid", gridTemplateColumns:`repeat(${2}, 1fr)`, backgroundColor:"yellow", padding:"4px"}}>
-        <div className="title h5" style={{justifySelf: "flex-start", alignSelf:"center"}}>
-          {title}
-          </div>
-          <div className="subTitle h6" style={{display:"flex", justifyContent:"center", alignItems:"center", justifySelf: "flex-end"}}>
+    const subTitleDiv = () => {
+      return (
+        <div className="subTitle h6" style={{display:"flex", justifyContent:"center", alignItems:"center", justifySelf: "flex-end"}}>
           <div>
             {subTitle}:
           </div>
@@ -55,17 +52,26 @@ class Table extends Component{
             {value}
           </div>
         </div>
+      )
+    }
+    return ( 
+      <div className="header" style={{display:"grid", gridTemplateColumns:`repeat(${2}, 1fr)`, backgroundColor:"yellow", padding:"4px"}}>
+        <div className="title h5" style={{justifySelf: "flex-start", alignSelf:"center"}}>
+          {title}
+        </div>
+        {subTitle? subTitleDiv(): null}
       </div>
     );
   }
 
   columnHeader = () => {
-    const { item , modifier, note } = this.props.data.columns;
+    const { item , modifier, note , dice} = this.props.data.columns;
     return (
         <div className="columnHeaders" style={{display:"grid", gridTemplateColumns:`1fr 10fr 2fr`, backgroundColor:"orange", padding:"4px"}}>
-          <div style={{justifySelf:"center", alignSelf:"center"}} > { note } </div>
-          <div style={{justifySelf:"center", alignSelf:"center"}} > { item } </div>
-          <div> { modifier } </div>
+          {note? <div style={{justifySelf:"center", alignSelf:"center"}}> { note } </div> : null }
+          {item? <div style={{justifySelf:"center", alignSelf:"center"}}> { item } </div> : null }
+          {modifier? <div style={{justifySelf:"center", alignSelf:"center"}}> { modifier } </div> : null }
+          {dice? <div style={{justifySelf:"center", alignSelf:"center"}}> { dice } </div> : null }
         </div>
     );
   }
@@ -81,10 +87,11 @@ class Table extends Component{
       }
 
       return (
-        <div  key={i} style={{display:"grid", gridTemplateColumns:`1fr 10fr 2fr`, padding:"4px"}}>
-          <div style={{justifySelf:"center", alignSelf:"center"}}> { note } </div>
-          <div> { x.name }</div>
-          <div style={{justifySelf:"flex-end"}}> { x.modifier } </div>
+        <div  key={i} style={{display:"grid", gridTemplateColumns:`1fr 10fr 2fr`, padding:"4px", backgroundColor:"pink"}}>
+          {note? <div style={{justifySelf:"center", alignSelf:"center"}}> { note } </div> : null }
+          {x.name? <div style={{justifySelf:"flex-start", alignSelf:"center"}}> { x.name } </div> : null }
+          {x.modifier? <div style={{justifySelf:"flex-end", alignSelf:"center"}}> { x.modifier } </div> : null }
+          {x.dice? <div style={{justifySelf:"center", alignSelf:"center"}}> { x.dice.type } </div> : null }
         </div>
       );
     });
@@ -98,7 +105,7 @@ class Table extends Component{
   render(){
     console.log(this.props)
     return(
-      <div className="Table" style={{display:"grid"}}>
+      <div className="Table" style={{display:"grid", gridTemplateRows:"30px 20px auto"}}>
         {this.header()}
         {this.columnHeader()}
         {this.items()}

@@ -1,13 +1,18 @@
 .PlayerCard{
   width: 320px;
-  height: 454px;
+  height: 568px;
   background-color: grey;
   display: grid;
+  grid-template-rows: 40px auto 30px;
   .header {
     background-color: blue;
   }
   .body {
     background-color: red;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2px;
+    padding: 2px;
   }
   .footer {
     background-color: green;

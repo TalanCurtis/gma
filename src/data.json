@@ -114,6 +114,16 @@
           ]
         },
         "weapons": {
+          "header": {
+            "title": "Weapons",
+            "subTitle": null,
+            "value": null
+          },
+          "columns":{
+            "note": "*",
+            "item": "Item",
+            "dice": "Dice" 
+          },
           "items": [
             {
               "id": 0,
