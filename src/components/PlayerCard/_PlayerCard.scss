@@ -1,6 +1,7 @@
 .PlayerCard{
   width: 320px;
   height: 568px;
+  max-height: 568;
   background-color: grey;
   display: grid;
   grid-template-rows: 40px auto 30px;
@@ -14,7 +15,7 @@
   .body {
     background-color: rgb(173, 125, 125);
     display: grid;
-    // grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 2px;
     padding: 2px;
   }
