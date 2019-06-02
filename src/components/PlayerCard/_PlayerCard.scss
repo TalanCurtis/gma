@@ -4,17 +4,21 @@
   background-color: grey;
   display: grid;
   grid-template-rows: 40px auto 30px;
+  box-shadow: 2px 2px 3px;
   .header {
-    background-color: blue;
+    background-color: rgb(142, 142, 189);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .body {
-    background-color: red;
+    background-color: rgb(173, 125, 125);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 2px;
     padding: 2px;
   }
   .footer {
-    background-color: green;
+    background-color: rgb(140, 177, 140);
   }
 }

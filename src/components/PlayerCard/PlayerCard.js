@@ -14,7 +14,7 @@ class PlayerCard extends Component{
     return(
       <div className="PlayerCard">
         <div className="header">
-          <div className="playerName">{playerName}</div>
+          <div className="playerName h4">{playerName}</div>
         </div>
         <div className="body" >
           {/* TODO: make comps for each attribute section then put them in a grid. */}
