@@ -54,6 +54,8 @@ export default
         ]
       },
       "info": {
+        "maxHP": 10,
+        "currentHP": 5,
         "characterName": "Dances with Wolves",
         "Alignment": "Chaotic Good",
         "Race": "Dwarf",
@@ -322,6 +324,8 @@ export default
         ]
       },
       "info": {
+        "maxHP": 12,
+        "currentHP": 8,
         "characterName": "Dances with Wolves",
         "Alignment": "Chaotic Good",
         "Race": "Dwarf",
