@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Table from '../Table/Table';
+import Counter from '../Counter/Counter';
 
 class PlayerCard extends Component{
   constructor(props){
@@ -7,6 +8,7 @@ class PlayerCard extends Component{
     this.state={
     }
   }
+  // TODO:  add redux actions to pass in to counter to add and subract health.
 
   render(){
     const { playerName, character } = this.props.content;
@@ -19,6 +21,7 @@ class PlayerCard extends Component{
           <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
             <div> MaxHP: {info.maxHP} </div>
             <div> Cur: {info.currentHP} </div>
+            <Counter value={info.currentHP} />
           </div>
         </div>
         <div className="body" >
