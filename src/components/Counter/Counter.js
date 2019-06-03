@@ -1,22 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateCurrentHP } from '../../redux/reducers/players/playersActions';
+import { debounce } from 'lodash';
 
-const Counter = (props) => {
-
-  const handleOnChange = (e) => {
-    if ( e.target.value > props.value){
-      props.updateCurrentHP(props.player, "add");
-    } else if ( e.target.value < props.value){
-      props.updateCurrentHP(props.player, "sub");
+class Counter extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      bouncing: false
     }
   }
 
-  return(
-    <div className="Counter" style={{display:"Flex", justifyContent:"center", alignItems:"center"}}>
-      <input type="number" style={{width:"50px", textAlign: "right"}} onChange={handleOnChange} value={props.value}/>
-    </div>
-  )
+  showPIP = debounce(()=>{console.log("hellp")}, 2000)
+
+   handleOnChange = (e) => {
+    this.showPIP();
+    if ( e.target.value > this.props.value){
+      this.props.updateCurrentHP(this.props.player, "add");
+    } else if ( e.target.value < this.props.value){
+      this.props.updateCurrentHP(this.props.player, "sub");
+    }
+  }
+
+  render(){
+    return(
+      <div className="Counter" style={{display:"Flex", justifyContent:"center", alignItems:"center"}}>
+        <input type="number" style={{width:"50px", textAlign: "right"}} onChange={this.handleOnChange} value={this.props.value}/>
+      </div>
+    )
+  }
 }
 
 Counter.defaultProps = {
