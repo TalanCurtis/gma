@@ -21,7 +21,7 @@ class PlayerCard extends Component{
           <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
             <div> MaxHP: {info.maxHP} </div>
             <div> Cur: {info.currentHP} </div>
-            <Counter value={info.currentHP} />
+            <Counter value={info.currentHP} player={this.props.content}/>
           </div>
         </div>
         <div className="body" >
