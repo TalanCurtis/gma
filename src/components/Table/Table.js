@@ -107,7 +107,6 @@ class Table extends Component{
   }
 
   render(){
-    console.log(this.props)
     return(
       <div className="Table" style={{display:"grid", gridTemplateRows:"30px 20px auto"}}>
         {this.header()}

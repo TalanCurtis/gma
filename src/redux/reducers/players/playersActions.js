@@ -12,14 +12,15 @@ export function updateATest(text) {
 }
 
 export function updateCurrentHP(player, operation) {
-  player = _.cloneDeep(player)
-  
+  player = _.cloneDeep(player);
   if (operation === "add"){
-    console.log("add")
+    console.log("add", player)
+    player.character.info.currentHP = player.character.info.currentHP + 1;
   } else if ( operation === "sub" ){
     console.log("sub")
+    player.character.info.currentHP = player.character.info.currentHP - 1;
   }
-  const payload = {players: player }
+  const payload = {player}
   const type = UPDATE_CURRENT_HP
   return {type, payload};
 }

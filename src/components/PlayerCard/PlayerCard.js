@@ -13,15 +13,13 @@ class PlayerCard extends Component{
   render(){
     const { playerName, character } = this.props.content;
     const { ammo, attributes, info, inventory, outfit, spells, wealth, weapons } = character
-    console.log("here", this.props)
     return(
       <div className="PlayerCard">
-        <div className="header">
+        <div className="header" style={{display:"flex" , justifyContent:"space-between"}}>
           <div className="playerName h4">{playerName}</div>
           <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
             <div> MaxHP: {info.maxHP} </div>
-            <div> Cur: {info.currentHP} </div>
-            <Counter value={info.currentHP} player={this.props.content}/>
+            <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}> Cur: <Counter value={info.currentHP} player={this.props.content}/> </div>
           </div>
         </div>
         <div className="body" >
