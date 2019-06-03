@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 // Types
 export const UPDATE_PLAYERS = "UPDATE_PLAYERS";
 export const UPDATE_CURRENT_HP = "UPDATE_CURRENT_HP";
@@ -10,6 +12,8 @@ export function updateATest(text) {
 }
 
 export function updateCurrentHP(player, operation) {
+  player = _.cloneDeep(player)
+  
   if (operation === "add"){
     console.log("add")
   } else if ( operation === "sub" ){
