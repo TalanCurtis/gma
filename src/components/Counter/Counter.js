@@ -14,9 +14,9 @@ class Counter extends Component {
 
   showPIP = debounce((value)=>{
     let tl = new TimelineLite();
-    tl.to(".pip", 0.5, {top:-10, opacity:1});
-    tl.to(".pip", 0.5, {opacity:0});
-    tl.set(".pip", {top:0, opacity:0});
+    tl.to(`.pip${this.props.player.id}`, 0.5, {top:-10, opacity:1});
+    tl.to(`.pip${this.props.player.id}`, 0.5, {opacity:0});
+    tl.set(`.pip${this.props.player.id}`, {top:0, opacity:0});
     console.log("hellp", value - this.props.value);
   }, 1000)
 
@@ -28,12 +28,13 @@ class Counter extends Component {
       this.props.updateCurrentHP(this.props.player, "sub");
     }
   }
+  // TODO: pip should show value difference not value
 
   render(){
     return(
       <div className="Counter" style={{display:"Flex", justifyContent:"center", alignItems:"center"}}>
         <input type="number" style={{width:"50px", textAlign: "right"}} onChange={this.handleOnChange} value={this.props.value}/>
-        <div className="pip h5" style={{position:"relative", top:"0px", right:"40px", pointerEvents:"none", opacity:0, color:"green"}}>
+        <div className={`pip${this.props.player.id} h5`} style={{position:"relative", top:"0px", right:"40px", pointerEvents:"none", opacity:0, color:"green"}}>
           {this.props.value}
         </div>
       </div>
