@@ -9,58 +9,44 @@ class Counter extends Component {
     super(props);
     this.state = {
       bouncing: false,
-      startValue: 0,
       difference: 0,
-      pipColor:"green"
+      pipColor:"green",
+      oldValue: this.props.value
     }
   }
 
-  // TODO: figure out the best way to show the correct pip when input using steps or typing in a value.
-  showPIP = debounce((value, operation)=>{
-    console.log("pip", {value, props:this.props.value})
+  showPIP = debounce((value)=>{
     let tl = new TimelineLite();
     let top = 30;
-    let difference;
-    let pipColor = "green";
-    if ( operation === "add" ){
+    let pipColor = "pink";
+    const { oldValue } = this.state;
+    let difference = value - oldValue;
+    if ( oldValue <= value ){
       // Adding
-      difference = this.state.startValue - 1 - value
-      difference = difference * -1;
       pipColor = "green";
       top = -10;
-    } else if ( operation === "sub" ){
-      // Subtracting
-      difference = this.state.startValue - value + 1
-      difference = difference * -1;
+    } else if ( oldValue > value ){
       pipColor = "red";
       top = 10;
     }
+
+    // Animation
     tl.to(`.pip${this.props.player.id}`, 0.5, {top:top, opacity:1});
     tl.to(`.pip${this.props.player.id}`, 0.5, {opacity:1});
     tl.to(`.pip${this.props.player.id}`, 0.5, {opacity:0})
     tl.set(`.pip${this.props.player.id}`, {top:0, opacity:0});
 
-    this.setState({bouncing:false, difference: difference, pipColor});
+    this.setState({bouncing:false, difference: difference, pipColor, oldValue:value});
   }, 1000)
 
    handleOnChange = (e) => {
-    let value = e.target.value *1;
-    console.log("change", {value, props:this.props.value})
-    let operation;
+    let value = e.target.value * 1;
     if (!this.state.bouncing){
-         this.setState({bouncing:true, startValue:e.target.value});
+         this.setState({bouncing:true});
     }
-    
-    if ( value >= this.props.value){
-      operation = "add"
-
-    } else if ( value < this.props.value){
-      operation = "sub"
-    }  
-    this.showPIP(value, operation);
+    this.showPIP(value);
     this.props.updateCurrentHP(this.props.player, value);
   }
-  // TODO: pip should show value difference not value
 
   render(){
     return(
