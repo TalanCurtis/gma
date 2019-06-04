@@ -15,17 +15,21 @@ class Counter extends Component {
     }
   }
 
+  // TODO: figure out the best way to show the correct pip when input using steps or typing in a value.
   showPIP = debounce((value, operation)=>{
+    console.log("pip", {value, props:this.props.value})
     let tl = new TimelineLite();
-    let top;
+    let top = 30;
     let difference;
     let pipColor = "green";
-    if ( operation === "add"){
+    if ( operation === "add" ){
+      // Adding
       difference = this.state.startValue - 1 - value
       difference = difference * -1;
       pipColor = "green";
       top = -10;
-    } else if (operation === "sub"){
+    } else if ( operation === "sub" ){
+      // Subtracting
       difference = this.state.startValue - value + 1
       difference = difference * -1;
       pipColor = "red";
@@ -40,19 +44,21 @@ class Counter extends Component {
   }, 1000)
 
    handleOnChange = (e) => {
+    let value = e.target.value;
+    console.log("change", {value, props:this.props.value})
+    let operation;
     if (!this.state.bouncing){
          this.setState({bouncing:true, startValue:e.target.value});
     }
-    let operation;
-    if ( e.target.value > this.props.value){
+    
+    if ( value >= this.props.value){
       operation = "add"
-      this.props.updateCurrentHP(this.props.player, operation);
 
-    } else if ( e.target.value < this.props.value){
+    } else if ( value < this.props.value){
       operation = "sub"
-      this.props.updateCurrentHP(this.props.player, operation);
-    }
-    this.showPIP(e.target.value, operation);
+    }  
+    this.showPIP(value, operation);
+    this.props.updateCurrentHP(this.props.player, value);
   }
   // TODO: pip should show value difference not value
 
