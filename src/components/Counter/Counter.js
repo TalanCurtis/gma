@@ -9,34 +9,63 @@ class Counter extends Component {
     super(props);
     this.state = {
       bouncing: false,
+      startValue: 0,
+      difference: 0,
+      pipColor:"green"
     }
   }
 
-  showPIP = debounce((value)=>{
+  showPIP = debounce((value, operation)=>{
     let tl = new TimelineLite();
-    tl.to(`.pip${this.props.player.id}`, 0.5, {top:-10, opacity:1});
-    tl.to(`.pip${this.props.player.id}`, 0.5, {opacity:0});
+    let top;
+    if ( operation === "add"){
+      top = -10;
+    } else if ( operation === "sub"){
+      top = 10;
+    }
+    tl.to(`.pip${this.props.player.id}`, 0.5, {top:top, opacity:1});
+    tl.to(`.pip${this.props.player.id}`, 0.5, {opacity:1});
+    tl.to(`.pip${this.props.player.id}`, 0.5, {opacity:0})
     tl.set(`.pip${this.props.player.id}`, {top:0, opacity:0});
-    console.log("hellp", value - this.props.value);
+    let difference;
+    let pipColor = "green";
+    console.log({difference})
+    if ( operation === "add"){
+      difference = this.state.startValue - 1 - value
+      difference = difference * -1;
+      pipColor = "green";
+    } else if (operation === "sub"){
+      difference = this.state.startValue - value + 1
+      difference = difference * -1;
+      pipColor = "red";
+    }
+    this.setState({bouncing:false, difference: difference, pipColor});
   }, 1000)
 
    handleOnChange = (e) => {
-    this.showPIP(e.target.value);
-    if ( e.target.value > this.props.value){
-      this.props.updateCurrentHP(this.props.player, "add");
-    } else if ( e.target.value < this.props.value){
-      this.props.updateCurrentHP(this.props.player, "sub");
+    if (!this.state.bouncing){
+         this.setState({bouncing:true, startValue:e.target.value});
     }
+    let operation;
+    if ( e.target.value > this.props.value){
+      operation = "add"
+      this.props.updateCurrentHP(this.props.player, operation);
+
+    } else if ( e.target.value < this.props.value){
+      operation = "sub"
+      this.props.updateCurrentHP(this.props.player, operation);
+    }
+    this.showPIP(e.target.value, operation);
   }
   // TODO: pip should show value difference not value
 
   render(){
     return(
       <div className="Counter" style={{display:"Flex", justifyContent:"center", alignItems:"center"}}>
-        <input type="number" style={{width:"50px", textAlign: "right"}} onChange={this.handleOnChange} value={this.props.value}/>
-        <div className={`pip${this.props.player.id} h5`} style={{position:"relative", top:"0px", right:"40px", pointerEvents:"none", opacity:0, color:"green"}}>
-          {this.props.value}
+        <div className={`pip${this.props.player.id} h5`} style={{position:"relative", top:"0px", left:"20px", pointerEvents:"none", opacity:0, color:this.state.pipColor,  textShadow: "1px 1px black"}}>
+          {this.state.difference}
         </div>
+        <input type="number" style={{width:"50px", textAlign: "right", marginRight:"4px"}} onChange={this.handleOnChange} value={this.props.value}/>
       </div>
     )
   }
