@@ -44,7 +44,7 @@ class Counter extends Component {
   }, 1000)
 
    handleOnChange = (e) => {
-    let value = e.target.value;
+    let value = e.target.value *1;
     console.log("change", {value, props:this.props.value})
     let operation;
     if (!this.state.bouncing){
