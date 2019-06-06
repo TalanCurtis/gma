@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Table from '../Table/Table';
+import Table2 from '../Table2/Table2';
 import Counter from '../Counter/Counter';
 
 class PlayerCard extends Component{
@@ -25,10 +25,10 @@ class PlayerCard extends Component{
         <div className="body" >
           {/* TODO: make comps for each attribute section then put them in a grid. */}
           <div>
-            <Table data={outfit} />
+            <Table2 data={outfit} />
           </div>
           <div>
-            <Table data={weapons} />
+            {/* <Table2 data={weapons} /> */}
           </div>
         </div>
         <div className="footer">

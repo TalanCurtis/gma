@@ -75,44 +75,73 @@ export default
           "subTitle": "AC",
           "value": 0
         },
-        "columns":{
-          "note": "*",
-          "item": "Item",
-          "modifier": "Mod" ,
-          "equipped": "Eq"
-        },
-        "items": [
+        "columns": [
           {
             "id": 0,
-            "name": "Black Chain mail",
-            "isMagical": true,
-            "modifier": 18,
-            "notes": [
-              "this Item is Magical",
-              "it does not reflect light"
-            ],
-            "bonuses": [
-              "good area to put objects the effect attributes like str + 2 while wearing armor"
-            ],
-            "isEquipped": true
+            "key": "notes",
+            "title": "*",
+            "size": "1fr"
           },
           {
             "id": 1,
-            "name": "Black Horned Helmet",
-            "isMagical": false,
-            "modifier": -3,
-            "notes": [],
-            "bonuses": [],
-            "isEquipped": true
+            "key": "item",
+            "title": "Item",
+            "size": "10fr"
           },
           {
             "id": 2,
-            "name": "Large Black Shield",
-            "isMagical": false,
-            "modifier": 4,
-            "notes": ["this is one big shield"],
+            "key": "modifier",
+            "title": "Mod",
+            "size": "2fr"
+          },
+          {
+            "id": 3,
+            "key": "equipped",
+            "title": "Eq",
+            "size": "1fr"
+          }
+        ],
+        "items": [
+          {
+            "id": 0,
+            "item": "Black Chain mail",
+            "modifier": 8,
+            "notes": {
+              "isMagical": true,
+              list: [
+                "this item does not reflect Light",
+                "turn character lawful evil"
+              ]
+            },
+            "bonuses": [
+              "good area to put objects the effect attributes like str + 2 while wearing armor"
+            ],
+            "equipped": true
+          },
+          {
+            "id": 1,
+            "item": "Black Horned Helmet",
+            "modifier": -3,
+            "notes": {
+              "isMagical": false,
+              list: [
+              ]
+            },
             "bonuses": [],
-            "isEquipped": false
+            "equipped": true
+          },
+          {
+            "id": 2,
+            "item": "Large Black Shield",
+            "modifier": 4,
+            "notes": {
+              "isMagical": false,
+              list: [
+                "this is one big shield"
+              ]
+            },
+            "bonuses": [],
+            "equipped": false
           }
         ]
       },
